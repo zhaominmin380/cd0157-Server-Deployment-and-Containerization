@@ -31,6 +31,7 @@ phases:
       - echo `kubectl version --short --client`
       - python -m pip install --upgrade --force pip
       - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add
+      - find /etc/apt/sources.list.d -name "*.list" -exec rm -v {} \; || true
       - echo "APT sources list:"
       - cat /etc/apt/sources.list.d/*.list || true
       - apt-get update 
