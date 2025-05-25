@@ -34,6 +34,7 @@ phases:
       - find /etc/apt/sources.list.d -name "*.list" -exec rm -v {} \; || true
       - echo "APT sources list:"
       - cat /etc/apt/sources.list.d/*.list || true
+      - sed -i '/apt\.corretto\.aws/d' /etc/apt/sources.list
       - apt-get update 
       - apt-get -y install jq  
       - pip install --upgrade awscli pytest
