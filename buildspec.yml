@@ -21,7 +21,8 @@ phases:
       # Download the kubectl checksum file
       - curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.32.3/2024-01-04/bin/linux/amd64/kubectl.sha256
       # Validate the kubectl binary against the checksum file
-      - sha256sum -c kubectl.sha256
+      - echo "$(cat kubectl.sha256)  kubectl" > kubectl.sha256.fixed
+      - sha256sum -c kubectl.sha256.fixed
       # Install kubectl
       - chmod +x ./kubectl ./aws-iam-authenticator      
       # - mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
